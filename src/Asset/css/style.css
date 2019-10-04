@@ -1,0 +1,29 @@
+body { margin: 0; background-color: white; }
+
+#mmvc-panel-content {
+
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    margin: 40px;
+    font-size: 14px;
+    font-family: monospace;
+    background-color: #f2f2f2;
+}
+
+#mmvc-panel-content #panel-header {
+
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#mmvc-panel-content #panel-body {
+
+    height: 83%;
+}
+
+#mmvc-panel-content #panel-body div {
+
+    padding: 15px;
+    height: 100%;
+    background-color: #d3d3d3;
+}

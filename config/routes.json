@@ -1,0 +1,10 @@
+{
+    "home": {
+        "path": "home",
+        "controller": "src/Controller/HomeController::index"
+    },
+    "login": {
+        "path": "login/test",
+        "controller": "src/Controller/HomeController::test"
+    }
+}
