@@ -13,6 +13,7 @@ require './autoload.php';
 
 $config = new Config();
 $config->setBasedir(__DIR__);
+$config->setBasedirName(basename(dirname(__FILE__)));
 $config->setConfigFolder($config->getBasedir() . '/config/');
 $config->setRouteFile($config->getConfigFolder() . 'routes.json');
 $config->setViewFolder('src/View/');

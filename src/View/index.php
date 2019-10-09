@@ -9,6 +9,7 @@
             <div id="panel-header" class="row d-flex justify-content-center">
                 <div class="col-md-12 text-center">
                     <h3>Welcome on MiniMVC!</h3>
+                    Print test: <?php echo $this->varTest; ?>
                 </div>
             </div>
             <div id="panel-body" class="row d-flex justify-content-around">

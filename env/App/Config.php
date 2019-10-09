@@ -5,6 +5,7 @@ namespace App;
 class Config {
 
     private $basedir;
+    private $basedirName;
     private $configFolder;
     private $routesFile;
     private $controllerFolder;
@@ -13,6 +14,9 @@ class Config {
 
     public function setBasedir($basedir) { $this->basedir = $basedir; }
     public function getBasedir() { return $this->basedir; }
+
+    public function setBasedirName($basedirName) { $this->basedirName = $basedirName; }
+    public function getBasedirName() { return $this->basedirName; }
 
     public function setConfigFolder($configFolder) { $this->configFolder = $configFolder; }
     public function getConfigFolder() { return $this->configFolder; }

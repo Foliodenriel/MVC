@@ -8,6 +8,9 @@ class HomeController extends AbstractController {
 
     public function index()
     {
+        $varTest = 'Bonjour';
+
+
         $this->render('index.php', [
             'test' => 'Ok',
         ]);
