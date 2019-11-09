@@ -15,6 +15,8 @@ class Router {
 
     private $currentRoute;
 
+    private $urlVarTable;
+
     public function __construct($file) {
 
         $this->routesFile = $file;
@@ -41,6 +43,8 @@ class Router {
     public function setCurrentRoute($currentRoute) { $this->currentRoute = $currentRoute; }
     public function getCurrentRoute() { return $this->currentRoute; }
 
+    public function getUrlVarTable() { return $this->urlVarTable; }
+
     public function routeExist($routeName)
     {
         if ($this->routes)
@@ -53,10 +57,24 @@ class Router {
         $retRoute = "";
         foreach ($this->routes as $key => $value) {
 
-            if (array_key_exists('path', $value) && $value['path'] === $urlPath) {
+            //if (array_key_exists('path', $value) && $value['path'] === $urlPath) {
+            if (array_key_exists('path', $value)) {
 
-                $retRoute = $key;
-                break;
+                if (is_array($value['path'])) {
+                    // Do as array
+                    for ($i = 0; $i < count($value['path']); $i++) {
+                        if ($this->resolve_path($value['path'][$i], $urlPath)) {
+
+                            $retRoute = $key;
+                            break;
+                        }
+                    }
+                }
+                else if ($this->resolve_path($value['path'], $urlPath)) {
+
+                    $retRoute = $key;
+                    break;
+                }
             }
         }
         return $retRoute;
@@ -84,5 +102,30 @@ class Router {
             $retPath = $this->routes[$route]['path'];
         }
         return $retPath;
+    }
+
+    protected function resolve_path($routePath, $urlPath) {
+
+        $index = 0;
+        $routePath = trim($routePath, '/');
+        $urlPath = trim($urlPath, '/');
+        $arrRoutePath = explode('/', $routePath);
+        $arrUrlPath = explode('/', $urlPath);
+        $varTable = [];
+
+        if (count($arrRoutePath) != count($arrUrlPath))
+            return false;
+
+        foreach ($arrRoutePath as $key => $value) {
+
+            if (preg_match('/^{.+}/', $value, $varTable)) {
+
+                $newValue = trim($value, '{}');
+                $this->urlVarTable[$newValue] = $arrUrlPath[$key];
+            }
+            else if ($value !== $arrUrlPath[$key])
+                return false;
+        }
+        return true;
     }
 }

@@ -43,4 +43,10 @@ class AbstractController {
             return '/' . $this->config->getBasedirName() . '/' . $this->config->getAssetFolder() . $file;
         return "";
     }
+
+    public function getParam($name) {
+
+        $table = $this->router->getUrlVarTable();
+        return $table[$name];
+    }
 }

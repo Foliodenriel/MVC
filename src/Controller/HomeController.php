@@ -10,7 +10,6 @@ class HomeController extends AbstractController {
     {
         $varTest = 'Bonjour';
 
-
         $this->render('index.php', [
             'test' => 'Ok',
         ]);
