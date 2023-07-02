@@ -1,7 +1,10 @@
 <?PHP
 
+session_start();
+
 use App\Router;
 use App\Config;
+use App\DBManager;
 
 /*  autoload.php file is a function called at first call
     of Class to setup the appropriate require.
@@ -11,15 +14,15 @@ if (!file_exists('./autoload.php'))
     return;
 require './autoload.php';
 
-$config = new Config();
-$config->setBasedir(__DIR__);
-$config->setBasedirName(basename(dirname(__FILE__)));
-$config->setConfigFolder($config->getBasedir() . '/config/');
-$config->setRouteFile($config->getConfigFolder() . 'routes.json');
+$config = new Config('./config/'); // default parameter
+// $config->setRouteFile("other_file");
+// $config->loadConfig();
 $config->setViewFolder('src/View/');
 $config->setAssetFolder('src/Asset/');
 
 $router = new Router($config->getRouteFile()); // Loading router from json file
+$dbmanager = new DBManager($config->getConfig('database'));
+$config->setDBManager($dbmanager);
 
 $urlPath = "";
 if (isset($_GET['url'])) $urlPath = $_GET['url'];
