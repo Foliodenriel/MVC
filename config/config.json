@@ -1,0 +1,11 @@
+{
+    "env": {
+        "dir": "/"
+    },
+    "database": {
+        "user": "",
+        "password": "",
+        "db": "",
+        "port": ""
+    }
+}

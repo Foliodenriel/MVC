@@ -40,7 +40,7 @@ class AbstractController {
     public function asset($file)
     {
         if (file_exists($this->config->getAssetFolder() . $file))
-            return '/' . $this->config->getBasedirName() . '/' . $this->config->getAssetFolder() . $file;
+            return $this->config->getBasedir() . $this->config->getAssetFolder() . $file;
         return "";
     }
 

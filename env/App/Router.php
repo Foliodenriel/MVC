@@ -57,7 +57,6 @@ class Router {
         $retRoute = "";
         foreach ($this->routes as $key => $value) {
 
-            //if (array_key_exists('path', $value) && $value['path'] === $urlPath) {
             if (array_key_exists('path', $value)) {
 
                 if (is_array($value['path'])) {
